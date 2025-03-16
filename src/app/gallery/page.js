@@ -5,11 +5,11 @@ export const dynamic = 'force-dynamic'; // Отключаем статическ
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import dynamic from 'next/dynamic';
+import ndynamic from 'next/dynamic'; // Переименовали импорт, чтобы не конфликтовать с экспортом dynamic
 import Image from 'next/image';
 import LightGallery, { lgZoom, lgThumbnail } from '@/components/LightGalleryWrapper';
 
-const Masonry = dynamic(() => import('react-masonry-css'), { ssr: false });
+const Masonry = ndynamic(() => import('react-masonry-css'), { ssr: false });
 
 export default function GalleryPage() {
   const searchParams = useSearchParams();
