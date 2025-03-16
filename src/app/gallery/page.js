@@ -1,17 +1,17 @@
 'use client';
 
-export const dynamic = 'force-dynamic'; // Отключаем статический prerendering
+export const dynamic = 'force-dynamic'; // Отключаем статическую генерацию страницы
 
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import ndynamic from 'next/dynamic'; // Переименовали импорт, чтобы не конфликтовать с экспортом dynamic
+import ndynamic from 'next/dynamic'; // Переименовываем, чтобы не конфликтовать с export dynamic
 import Image from 'next/image';
 import LightGallery, { lgZoom, lgThumbnail } from '@/components/LightGalleryWrapper';
 
 const Masonry = ndynamic(() => import('react-masonry-css'), { ssr: false });
 
-export default function GalleryPage() {
+function GalleryContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [selectedTab, setSelectedTab] = useState('livery');
@@ -199,66 +199,72 @@ export default function GalleryPage() {
   };
 
   return (
-    <Suspense fallback={<div>Loading gallery...</div>}>
-      <div className="bg-[#101010] min-h-screen text-white pt-20 md:pt-[170px] px-4">
-        {/* Навигация вкладок с gap-16 */}
-        <nav className="fixed top-[104.8px] w-full bg-[#101010] z-10 flex flex-wrap justify-center gap-16 text-base md:text-xl py-4 md:py-8 shadow-md px-4">
-          {['livery', 'logos', 'merch', 'others'].map((tab, idx) => (
-            <button
-              key={idx}
-              onClick={() => handleTabChange(tab)}
-              className={`py-2 transition ${selectedTab === tab ? 'underline-active' : 'underline-hover'}`}
-              style={linkStyle}
-            >
-              {tab === 'livery'
-                ? 'Livery Designs'
-                : tab === 'logos'
-                ? 'Logotypes'
-                : tab === 'merch'
-                ? 'Illustrations & Merch'
-                : 'Others'}
-            </button>
-          ))}
-        </nav>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedTab}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mt-8"
+    <div className="bg-[#101010] min-h-screen text-white pt-20 md:pt-[170px] px-4">
+      {/* Навигация вкладок с gap-16 */}
+      <nav className="fixed top-[104.8px] w-full bg-[#101010] z-10 flex flex-wrap justify-center gap-16 text-base md:text-xl py-4 md:py-8 shadow-md px-4">
+        {['livery', 'logos', 'merch', 'others'].map((tab, idx) => (
+          <button
+            key={idx}
+            onClick={() => handleTabChange(tab)}
+            className={`py-2 transition ${selectedTab === tab ? 'underline-active' : 'underline-hover'}`}
+            style={linkStyle}
           >
-            <Masonry
-              breakpointCols={{ default: 4, 1024: 3, 768: 2, 480: 1 }}
-              className="my-masonry-grid px-2"
-              columnClassName="my-masonry-grid_column"
-            >
-              {currentImages.map((item, idx) => (
-                <div key={idx} className="card-container cursor-pointer mb-2" onClick={() => handleClick(idx)}>
-                  <Image
-                    src={item.src}
-                    alt={item.title || `Image ${idx + 1}`}
-                    width={600}
-                    height={400}
-                    className="w-full h-auto object-cover transition-transform duration-300"
-                  />
-                </div>
-              ))}
-            </Masonry>
+            {tab === 'livery'
+              ? 'Livery Designs'
+              : tab === 'logos'
+              ? 'Logotypes'
+              : tab === 'merch'
+              ? 'Illustrations & Merch'
+              : 'Others'}
+          </button>
+        ))}
+      </nav>
 
-            <LightGallery
-              onInit={(detail) => { galleryRef.current = detail.instance; }}
-              dynamic={true}
-              dynamicEl={dynamicEl}
-              speed={500}
-              mode="lg-slide"
-              plugins={[lgZoom, lgThumbnail]}
-            />
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedTab}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="mt-8"
+        >
+          <Masonry
+            breakpointCols={{ default: 4, 1024: 3, 768: 2, 480: 1 }}
+            className="my-masonry-grid px-2"
+            columnClassName="my-masonry-grid_column"
+          >
+            {currentImages.map((item, idx) => (
+              <div key={idx} className="card-container cursor-pointer mb-2" onClick={() => handleClick(idx)}>
+                <Image
+                  src={item.src}
+                  alt={item.title || `Image ${idx + 1}`}
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover transition-transform duration-300"
+                />
+              </div>
+            ))}
+          </Masonry>
+
+          <LightGallery
+            onInit={(detail) => { galleryRef.current = detail.instance; }}
+            dynamic={true}
+            dynamicEl={dynamicEl}
+            speed={500}
+            mode="lg-slide"
+            plugins={[lgZoom, lgThumbnail]}
+          />
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export default function GalleryPage() {
+  return (
+    <Suspense fallback={<div>Loading gallery...</div>}>
+      <GalleryContent />
     </Suspense>
   );
 }
