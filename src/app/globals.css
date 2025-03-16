@@ -1,0 +1,232 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'lightgallery/css/lightgallery.css';
+@import 'lightgallery/css/lg-thumbnail.css';
+@import 'lightgallery/css/lg-zoom.css';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, sans-serif;
+}
+
+/* ---------- Underline стили ---------- */
+.underline-hover,
+.underline-active {
+  position: relative;
+  display: inline-block;
+  outline: none;
+  padding-bottom: 0.3rem;
+}
+
+.underline-hover::after,
+.underline-active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background-color: #df2c2c;
+  transition: width 0.3s ease;
+}
+
+.underline-hover:hover::after {
+  width: 100%;
+}
+
+.underline-active::after {
+  width: 100%;
+}
+
+/* ---------- Анимации ---------- */
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.animate-zoom {
+  animation: zoom 8s linear forwards;
+}
+
+.animate-zoom-restart {
+  animation: zoom 8s linear forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 1s linear forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s linear forwards;
+}
+
+/* ---------- Стили Masonry (для остальных страниц, например, хедера) ---------- */
+.masonry {
+  column-count: 4;
+  column-gap: 0.6rem;
+  margin: 0 auto;
+}
+
+.masonry-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: -0.1rem;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+}
+
+@media (max-width: 1024px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+@media (max-width: 768px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+@media (max-width: 480px) {
+  .masonry {
+    column-count: 1;
+  }
+}
+
+/* ---------- Новая Grid-раскладка для галереи ---------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 0 auto;
+}
+
+.gallery-grid-item {
+  display: block;
+  width: 100%;
+  break-inside: avoid;
+}
+
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Стили для карточек ---------- */
+.card-container {
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card-container:hover {
+  transform: scale(1.035);
+}
+
+.my-masonry-grid {
+  display: flex;
+  margin-left: -0.6rem; /* отступ для "зазора" */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 0.6rem; /* тот же "зазор" */
+  background-clip: padding-box;
+}
+.my-masonry-grid_column > div {
+  margin-bottom: 0.6rem;
+}
+
+.gallery-masonry {
+  /* Вместо display: grid — используем колонки */
+  column-count: 4;             /* Количество колонок на больших экранах */
+  column-gap: 0.6rem;          /* Промежуток между колонками */
+  margin: 0 auto;
+}
+
+.gallery-masonry-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0.6rem;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+}
+
+@media (max-width: 1024px) {
+  .gallery-masonry {
+    column-count: 3;
+  }
+}
+@media (max-width: 768px) {
+  .gallery-masonry {
+    column-count: 2;
+  }
+}
+@media (max-width: 480px) {
+  .gallery-masonry {
+    column-count: 1;
+  }
+}
+
+.about-page-footer {
+  background-color: #151515 !important;
+}
