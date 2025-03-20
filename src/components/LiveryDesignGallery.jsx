@@ -12,7 +12,7 @@ export default function LiveryDesignGallery() {
   const galleryRef = useRef(null);
 
   const header = (
-    <section className="w-full bg-[#151515] py-12 md:-mt-13">
+    <section className="w-full bg-[#151515] py-12 -mt-5 md:-mt-13">
       <div className="max-w-6xl mx-auto text-center px-4">
         <Image
           src="/titles/livery-designs.png"
@@ -53,7 +53,7 @@ export default function LiveryDesignGallery() {
     default: 4,
     1024: 3,
     768: 2,
-    480: 1,
+    480: 2,
   };
 
   const dynamicEl = images.map(({ src, title }) => ({
@@ -105,7 +105,7 @@ export default function LiveryDesignGallery() {
         plugins={[lgZoom, lgThumbnail]}
       />
 
-      <div className="mt-8 text-center">
+      <div className="mt-2 md:mt-8 py-8 md:py-0 text-center">
         <Link
           href="/gallery?tab=livery"
           className="inline-block text-xl text-[#f0f0f0] transition py-2 px-6 underline-hover"

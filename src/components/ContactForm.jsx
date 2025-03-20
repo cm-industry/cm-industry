@@ -109,7 +109,7 @@ export default function ContactForm() {
 
           <button
             type="submit"
-            className="inline-block text-xl text-[#f0f0f0] transition py-2 px-6 underline-hover -mt-2"
+            className="inline-block text-xl text-[#f0f0f0] transition py-2 px-6 underline-hover mt-1"
             style={{
               fontFamily: 'Arial, sans-serif',
               fontWeight: '700',

@@ -199,9 +199,29 @@ function GalleryContent() {
   };
 
   return (
-    <div className="bg-[#101010] min-h-screen text-white pt-20 md:pt-[170px] px-4">
+    <div className="
+        bg-[#101010]
+        min-h-screen
+        text-white
+        pt-[140px]       /* Для мобильных (вместо 20) */
+        md:pt-[180px]   /* Для десктопа (вместо 170) */
+        ">
       {/* Навигация вкладок с gap-16 */}
-      <nav className="fixed top-[104.8px] w-full bg-[#101010] z-10 flex flex-wrap justify-center gap-16 text-base md:text-xl py-4 md:py-8 shadow-md px-4">
+      <nav className="
+        fixed
+        top-[30px]        /* Для мобильных */
+        md:top-[104.8px]  /* Для десктопа */
+        w-full
+        bg-[#101010]
+        z-10
+        flex flex-wrap
+        justify-center
+        gap-4 md:gap-16    /* Меньше расстояние между вкладками на мобилке */
+        text-base md:text-xl
+        mt-4 md:mt-0
+        py-4 md:py-8       /* Чуть меньше вертикальные отступы на мобилке */
+        shadow-md"
+        >
         {['livery', 'logos', 'merch', 'others'].map((tab, idx) => (
           <button
             key={idx}
@@ -230,9 +250,14 @@ function GalleryContent() {
           className="mt-8"
         >
           <Masonry
-            breakpointCols={{ default: 4, 1024: 3, 768: 2, 480: 1 }}
-            className="my-masonry-grid px-2"
-            columnClassName="my-masonry-grid_column"
+              breakpointCols={{
+                default: 4,
+                1024: 3,
+                768: 2,
+                480: 2  // <-- Было 1, теперь 2
+              }}
+              className="my-masonry-grid px-2"
+              columnClassName="my-masonry-grid_column"
           >
             {currentImages.map((item, idx) => (
               <div key={idx} className="card-container cursor-pointer mb-2" onClick={() => handleClick(idx)}>

@@ -31,7 +31,7 @@ export default function ourclients() {
   return (
     <>
       {/* Заголовок секции */}
-      <section className="w-full bg-[#101010] py-1 mt-2">
+      <section className="w-full bg-[#101010] py-0 md:py-1 mt-4">
         <div className="max-w-6xl mx-auto text-center px-4">
           <Image
             src="/titles/our-clients.png"

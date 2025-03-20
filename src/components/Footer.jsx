@@ -49,7 +49,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#101010] shadow z-10 -mt-10">
+    // добавляем hidden md:block: футер скрыт на мобильных, отображается на устройствах md и выше
+    <footer className="hidden md:block w-full bg-[#101010] shadow z-10 -mt-10">
       <nav className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center p-4 md:p-8 gap-4">
         {/* Левая колонка – Логотип */}
         <div className="flex justify-start md:-ml-20">
@@ -75,10 +76,18 @@ export default function Footer() {
             >
               Home
             </a>
-            <Link href="/gallery" className="text-center text-xl text-[#f0f0f0] transition underline-hover py-4" style={linkStyle}>
+            <Link
+              href="/gallery"
+              className="text-center text-xl text-[#f0f0f0] transition underline-hover py-4"
+              style={linkStyle}
+            >
               Gallery
             </Link>
-            <Link href="/about" className="text-center text-xl text-[#f0f0f0] transition underline-hover py-4" style={linkStyle}>
+            <Link
+              href="/about"
+              className="text-center text-xl text-[#f0f0f0] transition underline-hover py-4"
+              style={linkStyle}
+            >
               About us
             </Link>
             <a

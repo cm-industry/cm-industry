@@ -1,6 +1,5 @@
 'use client';
 
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -8,14 +7,11 @@ import Link from 'next/link';
 
 const MotionLink = motion.create(Link);
 
-
 export default function AboutPage() {
   return (
     <>
-      <Header />
-
       {/* Hero-секция */}
-      <section className="relative w-full h-[63.9vh] overflow-hidden bg-[#151515]">
+      <section className="relative w-screen h-[20vh] md:h-[63.9vh] overflow-hidden bg-[#151515] mt-10">
         <AnimatePresence mode="wait">
           <motion.div
             initial={{ opacity: 0, scale: 1 }}
@@ -38,7 +34,7 @@ export default function AboutPage() {
               src="/hero/image8.jpg"
               alt="About Us Hero"
               fill
-              className="object-cover"
+              className="object-cover object-center"
               priority
             />
           </motion.div>
@@ -46,7 +42,7 @@ export default function AboutPage() {
       </section>
 
       {/* Основная текстовая секция */}
-      <main className="bg-[#151515] text-white py-16 px-4 md:px-6">
+      <main className="bg-[#151515] text-white py-16 md:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2
             className="text-3xl md:text-4xl font-bold mb-6 uppercase"
