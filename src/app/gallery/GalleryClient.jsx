@@ -1,18 +1,15 @@
 'use client';
 
-import { useState, useEffect, useRef, Suspense } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import ndynamic from 'next/dynamic';
 import Image from 'next/image';
 import LightGallery, { lgZoom, lgThumbnail } from '@/components/LightGalleryWrapper';
 
-export const dynamic = 'force-dynamic';
-
 const Masonry = ndynamic(() => import('react-masonry-css'), { ssr: false });
 
-export default function GalleryClient() {
-  
+export default function GalleryContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [selectedTab, setSelectedTab] = useState('livery');
