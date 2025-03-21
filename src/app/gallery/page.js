@@ -4,7 +4,7 @@ export const metadata = {
 
 import Head from 'next/head';
 import { Suspense } from 'react';
-import GalleryContent from './GalleryContent'; // Импорт обычным способом
+import GalleryContent from './GalleryClient';
 
 export default function GalleryPage() {
   return (
