@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ourclients() {
-  // Массив объектов с данными логотипов, где для каждой картинки указан адрес сайта (link)
   const logos = [
     { src: "/ourclients/1.png", title: "Feal Suspension", link: "https://fealsuspensionstore.com/" },
     { src: "/ourclients/2.png", title: "Spec Tuned", link: "https://www.spectuned.com/" },
@@ -30,7 +29,6 @@ export default function ourclients() {
 
   return (
     <>
-      {/* Заголовок секции */}
       <section className="w-full bg-[#101010] py-0 md:py-1 mt-4">
         <div className="max-w-6xl mx-auto text-center px-4">
           <Image
@@ -44,10 +42,8 @@ export default function ourclients() {
         </div>
       </section>
 
-      {/* Галерея логотипов */}
       <section className="w-full bg-[#101010] py-8">
         <div className="max-w-5xl mx-auto mt-4 px-4">
-          {/* Сетка: 2 колонки (mobile), 3 – (sm, md), 4 – (lg+) */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 place-items-center">
             {logos.map((item, idx) => (
               <Link

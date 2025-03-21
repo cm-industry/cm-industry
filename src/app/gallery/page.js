@@ -1,11 +1,11 @@
 'use client';
 
-export const dynamic = 'force-dynamic'; // Отключаем статическую генерацию страницы
+export const dynamic = 'force-dynamic';
 
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import ndynamic from 'next/dynamic'; // Переименовываем, чтобы не конфликтовать с export dynamic
+import ndynamic from 'next/dynamic';
 import Image from 'next/image';
 import LightGallery, { lgZoom, lgThumbnail } from '@/components/LightGalleryWrapper';
 
@@ -206,7 +206,6 @@ function GalleryContent() {
         pt-[140px]       /* Для мобильных (вместо 20) */
         md:pt-[180px]   /* Для десктопа (вместо 170) */
         ">
-      {/* Навигация вкладок с gap-16 */}
       <nav className="
         fixed
         top-[30px]        /* Для мобильных */
@@ -254,7 +253,7 @@ function GalleryContent() {
                 default: 4,
                 1024: 3,
                 768: 2,
-                480: 2  // <-- Было 1, теперь 2
+                480: 2
               }}
               className="my-masonry-grid px-2"
               columnClassName="my-masonry-grid_column"

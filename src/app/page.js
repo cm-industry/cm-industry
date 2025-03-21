@@ -13,7 +13,6 @@ export default function HomePage() {
         <HeroSection />
       </section>
 
-      {/* Фон для галереи Livery Designs изменён на #151515 */}
       <section className="w-full bg-[#151515] py-1 md:py-8">
         <LiveryDesignGallery />
       </section>
@@ -22,7 +21,6 @@ export default function HomePage() {
         <LogotypesSection />
       </section>
 
-      {/* Фон для Merch изменён на #151515 */}
       <section className="w-full bg-[#151515] py-8">
         <MerchAndIllustrationsSection />
       </section>

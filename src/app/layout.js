@@ -9,7 +9,7 @@ const containerVariants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.25, // элементы появляются с небольшой задержкой
+      staggerChildren: 0.25,
     },
   },
 };
@@ -23,7 +23,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Метатег для адаптивности */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="min-h-screen bg-[#101010]">

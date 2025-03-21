@@ -1,9 +1,16 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const baseInputClass =
   "p-3 bg-[#101010] rounded text-white w-full focus:border-[#df2c2c] focus:outline-none transition";
 const errorInputClass = "border border-red-500";
+
+const notificationVariants = {
+  initial: { opacity: 0, y: -20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+};
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -14,7 +21,16 @@ export default function ContactForm() {
     message: ""
   });
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState(null); // для отображения результата
+  const [status, setStatus] = useState(null);
+
+  useEffect(() => {
+    if (status && (status.type === 'success' || status.type === 'error')) {
+      const timer = setTimeout(() => {
+        setStatus(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,9 +51,9 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) {
-      return;
-    }
+    if (!validate()) return;
+
+    setStatus({ type: 'loading', text: 'Sending...' });
 
     try {
       const res = await fetch('/api/contact', {
@@ -47,20 +63,72 @@ export default function ContactForm() {
       });
 
       if (res.ok) {
-        setStatus('success');
-        // Можно очистить форму:
+        setStatus({ type: 'success', text: 'Message sent' });
         setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
       } else {
         const data = await res.json();
-        setStatus(`error: ${data.error || 'Unknown error'}`);
+        setStatus({ type: 'error', text: `Failed to send message: ${data.error || 'Unknown error'}` });
       }
     } catch (error) {
-      setStatus(`error: ${error.message}`);
+      setStatus({ type: 'error', text: `Failed to send message: ${error.message}` });
+    }
+  };
+
+  const getStatusStyles = () => {
+    if (!status) return "";
+    switch (status.type) {
+      case 'loading':
+        return "bg-blue-500 text-white";
+      case 'success':
+        return "bg-green-500 text-black";
+      case 'error':
+        return "bg-red-500 text-white";
+      default:
+        return "";
+    }
+  };
+
+  const getStatusText = () => {
+    if (!status) return "";
+    switch (status.type) {
+      case 'loading':
+        return status.text;
+      case 'success':
+        return `✓ ${status.text}`;
+      case 'error':
+        return `✗ ${status.text}`;
+      default:
+        return "";
     }
   };
 
   return (
-    <div className="bg-[#151515] text-white py-8 px-8 -mt-12">
+    <div className="bg-[#151515] text-white py-8 px-8 -mt-12 relative">
+      <AnimatePresence>
+        {status && (
+          <motion.div
+            key={status.type}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={notificationVariants}
+            className={`
+              fixed
+              top-[120px] left-1/2
+              -translate-x-1/2
+              z-50
+              px-8 py-4
+              text-2xl font-bold
+              shadow-lg
+              rounded-xl
+              ${getStatusStyles()}
+            `}
+          >
+            {getStatusText()}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="max-w-4xl mx-auto px-4">
         <h2
           className="text-3xl font-bold uppercase text-center text-[#f0f0f0] mb-5 tracking-wide"

@@ -49,7 +49,6 @@ export default function Footer() {
   };
 
   return (
-    // добавляем hidden md:block: футер скрыт на мобильных, отображается на устройствах md и выше
     <footer className="hidden md:block w-full bg-[#101010] shadow z-10 -mt-10">
       <nav className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center p-4 md:p-8 gap-4">
         {/* Левая колонка – Логотип */}
@@ -65,7 +64,6 @@ export default function Footer() {
           </Link>
         </div>
 
-        {/* Центральная колонка – Навигация */}
         <div className="flex justify-center whitespace-nowrap">
           <div className="flex flex-wrap justify-center gap-16">
             <a
@@ -101,7 +99,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Правая колонка – Иконки соцсетей */}
         <div className="flex justify-end space-x-6">
           <a href="https://www.instagram.com/cm.industry/" target="_blank" rel="noopener noreferrer">
             <Image src="/icons/instagram.png" alt="Instagram" width={24} height={24} className="hover:opacity-75 transition" />

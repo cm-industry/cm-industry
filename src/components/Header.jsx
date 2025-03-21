@@ -58,9 +58,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full bg-[#151515] bg-opacity-95 backdrop-blur-md shadow z-50">
-      {/* Десктопная версия */}
       <nav className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center p-4 md:p-8 gap-4 hidden md:grid">
-        {/* Левая колонка – Логотип */}
         <div className="flex justify-start md:-ml-20">
           <a href="/" onClick={handleHomeClick}>
             <Image
@@ -72,7 +70,6 @@ export default function Header() {
             />
           </a>
         </div>
-        {/* Центральная колонка – Навигация */}
         <div className="flex justify-center whitespace-nowrap">
           <div className="flex flex-wrap justify-center gap-16">
             <a
@@ -107,7 +104,6 @@ export default function Header() {
             </a>
           </div>
         </div>
-        {/* Правая колонка – Иконки соцсетей */}
         <div className="flex justify-end space-x-6">
           <a href="https://www.instagram.com/cm.industry/" target="_blank" rel="noopener noreferrer">
             <Image
@@ -139,7 +135,6 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Мобильная версия: компактная */}
       <nav className="max-w-6xl mx-auto md:hidden flex items-center justify-between px-4 py-3">
         {/* Логотип: чуть меньше, например 140×50 */}
         <a href="/" onClick={handleHomeClick} className="flex-shrink-0">
@@ -152,7 +147,6 @@ export default function Header() {
           />
         </a>
 
-        {/* Правая часть: соц. иконки + гамбургер в одну строку */}
         <div className="flex items-center gap-3">
           {/* Иконки соцсетей: 24×24 */}
           <a href="https://www.instagram.com/cm.industry/" target="_blank" rel="noopener noreferrer">
@@ -183,7 +177,6 @@ export default function Header() {
             />
           </a>
 
-          {/* Кнопка-гамбургер: 24×24 */}
           <button className="text-white focus:outline-none" onClick={toggleMenu}>
             {menuOpen ? (
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -198,7 +191,6 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Мобильное выпадающее меню */}
       <AnimatePresence>
         {menuOpen && (
           <motion.nav

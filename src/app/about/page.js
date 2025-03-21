@@ -10,7 +10,6 @@ const MotionLink = motion.create(Link);
 export default function AboutPage() {
   return (
     <>
-      {/* Hero-секция */}
       <section className="relative w-full h-[20vh] md:h-[63.9vh] overflow-hidden bg-[#151515] mt-10">
         <AnimatePresence mode="wait">
           <motion.div
@@ -41,7 +40,6 @@ export default function AboutPage() {
         </AnimatePresence>
       </section>
 
-      {/* Основная текстовая секция */}
       <main className="bg-[#151515] text-white py-16 md:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2
@@ -61,7 +59,6 @@ export default function AboutPage() {
             clients while we pour dedication and heart into every detail.
           </p>
 
-          {/* Секция специализаций */}
           <section className="mt-16">
             <h2
               className="text-3xl md:text-4xl font-bold uppercase mb-8"

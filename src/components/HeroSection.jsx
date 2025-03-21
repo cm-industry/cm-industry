@@ -21,7 +21,6 @@ export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
 
-  // Определяем ширину окна для адаптивной высоты
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -29,7 +28,6 @@ export default function HeroSection() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Смена слайдов
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -37,7 +35,6 @@ export default function HeroSection() {
     return () => clearInterval(interval);
   }, [images.length, cycleDuration]);
 
-  // Отслеживаем скролл для эффекта сжатия
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -61,13 +58,9 @@ export default function HeroSection() {
     },
   };
 
-  // Новые настройки высоты:
-  // Мобильные (ширина < 768px): maxHeight = 350px, minHeight = 150px.
-  // Десктоп: maxHeight = 600px, minHeight = 250px.
   const maxHeight = windowWidth < 768 ? 175 : 600;
   const minHeight = windowWidth < 768 ? 100 : 250;
 
-  // Уменьшаем влияние скролла: коэффициент 0.2 вместо 0.5
   const currentHeight = Math.max(maxHeight - scrollY * 0.2, minHeight);
 
   return (
