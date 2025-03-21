@@ -1,3 +1,7 @@
+export const metadata = {
+  title: 'Home - CM Industry',
+};
+
 import HeroSection from '../components/HeroSection';
 import LiveryDesignGallery from '../components/LiveryDesignGallery';
 import LogotypesSection from '../components/LogotypesSection';
@@ -8,7 +12,7 @@ import Footer from '../components/Footer';
 
 export default function HomePage() {
   return (
-    <main className="">
+    <main>
       <section className="w-full bg-[#101010]">
         <HeroSection />
       </section>
