@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import ndynamic from 'next/dynamic';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import LightGallery, { lgZoom, lgThumbnail } from '@/components/LightGalleryWrapper';
 
-const Masonry = ndynamic(() => import('react-masonry-css'), { ssr: false });
+const Masonry = dynamic(() => import('react-masonry-css'), { ssr: false });
 
 export default function GalleryContent() {
   const searchParams = useSearchParams();

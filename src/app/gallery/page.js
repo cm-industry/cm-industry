@@ -3,10 +3,8 @@ export const metadata = {
 };
 
 import Head from 'next/head';
-import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
-
-const GalleryContent = dynamic(() => import('./GalleryContent'), { ssr: false });
+import GalleryContent from './GalleryContent'; // Импорт обычным способом
 
 export default function GalleryPage() {
   return (
