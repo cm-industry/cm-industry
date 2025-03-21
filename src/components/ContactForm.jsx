@@ -1,6 +1,10 @@
 'use client';
 import React, { useState } from 'react';
 
+const baseInputClass =
+  "p-3 bg-[#101010] rounded text-white w-full focus:border-[#df2c2c] focus:outline-none transition";
+const errorInputClass = "border border-red-500";
+
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -36,7 +40,7 @@ export default function ContactForm() {
     }
 
     try {
-      const res = await fetch('pages/api/contact.js', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

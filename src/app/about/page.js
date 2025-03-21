@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero-секция */}
-      <section className="relative w-screen h-[20vh] md:h-[63.9vh] overflow-hidden bg-[#151515] mt-10">
+      <section className="relative w-full h-[20vh] md:h-[63.9vh] overflow-hidden bg-[#151515] mt-10">
         <AnimatePresence mode="wait">
           <motion.div
             initial={{ opacity: 0, scale: 1 }}
