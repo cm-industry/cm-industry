@@ -6,7 +6,7 @@ export async function POST(req) {
     const { firstName, lastName, email, subject, message } = await req.json();
 
     const transporter = nodemailer.createTransport({
-      host: 'smtp.fastmail.com',
+      host: 'smtp.gmail.com',
       port: 465,
       secure: true,
       auth: {
@@ -17,7 +17,7 @@ export async function POST(req) {
 
     await transporter.sendMail({
       from: `"Contact Form" <${process.env.EMAIL_USER}>`,
-      to: 'info@cm-industry.net',
+      to: process.env.EMAIL_USER,
       subject: `New Contact Form Submission: ${subject}`,
       text: `
       Name: ${firstName} ${lastName}
