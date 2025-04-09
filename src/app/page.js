@@ -1,7 +1,7 @@
 export const metadata = {
   title: 'Home - CM Industry',
   alternates: {
-    canonical: 'https://cm-industry.net/',
+    canonical: 'https://www.cm-industry.net/',
   },
 };
 
