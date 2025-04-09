@@ -75,21 +75,21 @@ export default function Header() {
             <a
               href="/"
               onClick={handleHomeClick}
-              className="text-center text-xl text-[#f0f0f0] transition underline-hover py-3 cursor-pointer"
+              className="text-center text-xl text-[#f0f0f0] transition underline-hover py-4 cursor-pointer"
               style={linkStyle}
             >
               Home
             </a>
             <a
               href="/gallery"
-              className="text-center text-xl text-[#f0f0f0] transition underline-hover py-3"
+              className="text-center text-xl text-[#f0f0f0] transition underline-hover py-4"
               style={linkStyle}
             >
               Gallery
             </a>
             <a
               href="/about"
-              className="text-center text-xl text-[#f0f0f0] transition underline-hover py-3"
+              className="text-center text-xl text-[#f0f0f0] transition underline-hover py-4"
               style={linkStyle}
             >
               About us
@@ -97,7 +97,7 @@ export default function Header() {
             <a
               href="/#contact"
               onClick={handleContactClick}
-              className="text-center text-xl text-[#f0f0f0] transition underline-hover py-3 cursor-pointer"
+              className="text-center text-xl text-[#f0f0f0] transition underline-hover py-4 cursor-pointer"
               style={linkStyle}
             >
               Contact

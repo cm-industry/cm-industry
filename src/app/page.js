@@ -1,5 +1,8 @@
 export const metadata = {
   title: 'Home - CM Industry',
+  alternates: {
+    canonical: 'https://cm-industry.net/',
+  },
 };
 
 import HeroSection from '../components/HeroSection';
